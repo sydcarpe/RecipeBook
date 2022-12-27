@@ -1,3 +1,84 @@
 <?php
-// This page is what the user will see when they click on a specific recipe
+$servername = "localhost";
+$username = "root";
+$password = "Tuna!Fish99";
+$db = "recipebook";
+
+session_start();
+$conn = new mysqli($servername, $username, $password, $db);
+
+$currUser = 1; //hard coded for now
+$sql = "SELECT * FROM User
+		WHERE id = $currUser;";
+$result = mysqli_query($conn, $sql);
+
+if($conn->connect_errno){
+	echo "Error Connecting";
+}
+
+//Getting user information
+$getUserInfoSQL = "SELECT * FROM User WHERE id = $currUser;";
+$getUserInfo = mysqli_query($conn, $getUserInfoSQL);
+if($getUserInfo){
+	if($getUserInfo->num_rows > 0){
+		while($row = $getUserInfo->fetch_assoc()){
+			$fname = $row['fname'];
+			$lname = $row['lname'];
+		}
+	}
+}
+
+//getting recipeID information
+$recipeID = htmlspecialchars($_POST['recipeID']);
+
+//getting the recipe information
+$getRecipesSQL = "SELECT * FROM Recipe WHERE id = $recipeID;";
+$getRecipes = mysqli_query($conn, $getRecipesSQL);
+
+if($getRecipes){
+	if($getRecipes->num_rows > 0){
+		while($row = $getRecipes->fetch_assoc()){
+			$recipeID = $row['id'];
+			$recipeTitle = $row['title'];
+			$recipeCreated = $row['dateCreated'];
+			$servings = $row['servings'];
+			$cookTime = $row['cookTime'];
+			$recipeReview = $row['review'];
+			$recipeNotes = $row['notes'];
+		}
+	}
+}
+
+
 ?>
+<!DOCTYPE html>
+<html>
+	<head> 
+		<link rel="stylesheet" href="css/index.css" >
+	</head>
+
+	<body>
+
+		<h1> <?php echo $recipeTitle; ?> </h1>
+
+		<?php
+			//Get all the ingredients and steps
+			$getIngreidentsSQL = "SELECT * FROM Ingredients WHERE recipeID = $recipeID;";
+			$getIngreidents = mysqli_query($conn, $getIngreidentsSQL);
+			
+			if($getIngreidents){
+				if($getIngreidents->num_rows > 0){
+					while($row = $getIngreidents->fetch_assoc()){
+						$ingreidentID = $row['id'];
+						$ingreidentTitle = $row['title'];
+						$ingreidentQuantity = $row['quantity'];
+						$measurement = $row['measurement'];
+					}
+				}
+			}
+
+		?>
+		
+	</body>
+
+</html>

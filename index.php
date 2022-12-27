@@ -48,27 +48,29 @@ if($getUserInfo){
 		<h1>Welcome <?php echo $fname; ?> </h1>
 
 		<h3>Your recipe books</h3>
-		<?php
-			//Getting Recipe Book information from user id
-			$getRecipeBooksSQL = "SELECT * FROM RecipeBook
-									WHERE userID = $currUser;"; 
-			$getRecipeBooks = mysqli_query($conn, $getRecipeBooksSQL);
-			if($getRecipeBooks){
-				if($getRecipeBooks->num_rows > 0){
-					while ($row = $getRecipeBooks->fetch_assoc()){
-						$recipeBookID = $row['id'];
-						$recipeBookTitle = $row['title'];
-						$dateCreatedBook = $row['dateCreated'];
+		
+		<form  action='ViewRecipeBook.php' method="POST">
+			<?php
+				//Getting Recipe Book information from user id
+				$getRecipeBooksSQL = "SELECT * FROM RecipeBook
+										WHERE userID = $currUser;"; 
+				$getRecipeBooks = mysqli_query($conn, $getRecipeBooksSQL);
+				if($getRecipeBooks){
+					if($getRecipeBooks->num_rows > 0){
+						while ($row = $getRecipeBooks->fetch_assoc()){
+							$recipeBookID = $row['id'];
+							$recipeBookTitle = $row['title'];
+							$dateCreatedBook = $row['dateCreated'];
 						
-						//displays each recipebook the user owns and allows the user to click and take to ViewRecipeBook.php
-						echo "<input type='hidden' value='$recipeBookID' id='recipeBookID'/>"; //getting the recipeBook ID number
-						echo "<a href='ViewRecipeBook.php'>" . $recipeBookTitle . "</a>";
+							//displays each recipebook the user owns and allows the user to click and take to ViewRecipeBook.php
+							echo "<input type='hidden' value='$recipeBookID' name='recipeBookID'/>"; //getting the recipeBook ID number
+							echo "<button type='submit'>" . $recipeBookTitle . "</button>";
 						
+						}
 					}
 				}
-			}
-
-		?>
+			?>
+		</form>
 		
 
 	</body>
