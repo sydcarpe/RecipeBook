@@ -60,6 +60,7 @@ if($getRecipes){
 	<body>
 
 		<h1> <?php echo $recipeTitle; ?> </h1>
+		<img src='' />
 		<?php 
 			echo "<p> servings: " . $servings . "</p>";
 			echo "<p> cook time: " . $cookTime . "</p>";
