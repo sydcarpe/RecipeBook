@@ -14,7 +14,6 @@ body {
 }
 
 .navBar {
-    background-color: var(--offPink);
     display: flex;
     flex-direction: row;
     color: var(--charcole);
@@ -31,7 +30,7 @@ body {
     }
 
     .navBar button:hover{
-        color: var(--greenie);
+        color: var(--dustyRose);
     }
 
 
@@ -43,7 +42,8 @@ body {
 }
 
 .recipeContainer{
-    margin:1.0em;
+    margin:0;
+    margin-bottom: 1.0em;
     max-width: 80.0em;
     background-color:var(--orangie);
     display:flex;
@@ -52,12 +52,17 @@ body {
 
     .recipeContainer h1 {
         text-align: center;
-        margin:0;
+        margin:.5em;
     }
 
-    .recipeContainer img{
+    .recipeContainer img {
         width: 350px;
-        align-self:center;
+        align-self: center;
+        border: ridge .40em var(--offPink);
+    }
+
+    .recipeContainer h3{
+        align-self:flex-start;
     }
 
 .recipeInfo {
@@ -68,6 +73,75 @@ body {
 }
 
     .recipeInfo p {
-        padding: 0 1.0em;
+        padding: 0 .75em;
         margin:1.0em ;
+        font-size: 18px;
+    }
+
+.IngredientsSection{
+    margin:0;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    flex-wrap: wrap;
+}
+
+    .IngredientsSection h3 {
+        margin: 1.0em 0 0 15%;
+        font-size: 25px;
+    }
+    .IngredientsSection li {
+        margin-top: 0;
+        margin-left: 15%;
+        font-size: 20px;
+    }
+
+
+.stepsContainer {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+    .stepsContainer h3 {
+        margin: 1.0em 0 0 15%;
+        font-size: 25px;
+    }
+
+    .stepsContainer ol{
+        max-width: 80%;
+        align-self:center;
+        margin:0;
+        padding-bottom: 2.0em;
+    }
+
+    .stepsContainer li {
+        padding: 1.0em;
+        margin: 1.0em;
+        font-size:20px;
+    }
+
+/*Notes section*/
+.notesSection {
+    padding:1.0em;
+    font-size: 25px;
+    background-color: var(--eggshell);
+    width: 20.0em;
+    min-height: 10.0em;
+    margin-bottom: 1.0em;
+    align-self:center;
+    border: ridge .40em var(--offPink);
+}
+
+    .notesSection h3{
+        margin:0;
+        font-size: 22px;
+    }
+
+    .notesSection p {
+        margin: 0;
+        font-size: 18px;
+        margin-top: .5em;
     }

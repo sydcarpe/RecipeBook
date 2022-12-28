@@ -102,7 +102,7 @@ if($getRecipeBookInfo){
 					echo "<div class='recipeInfo'>";
 						echo "<p> servings: " . $servings . "</p>";
 						echo "<p> cook time: " . $cookTime . "</p>";
-						echo "<p> Your review: " . $recipeReview . "</p>";
+						echo "<p>" . $recipeReview . "/5 </p>";
 					echo "</div>";
 
 					//showing the image
@@ -110,53 +110,69 @@ if($getRecipeBookInfo){
 				?>
 
 				<!--Ingredients section-->
-				<h3>Ingredients</h3>
-				<ul>
-					<?php
-						//Get all the ingredients and steps
-						$getIngreidentsSQL = "SELECT * FROM Ingredients WHERE recipeID = $recipeID;";
-						$getIngreidents = mysqli_query($conn, $getIngreidentsSQL);
-			
-						if($getIngreidents){
-							if($getIngreidents->num_rows > 0){
-								while($row = $getIngreidents->fetch_assoc()){
-									$ingreidentID = $row['id'];
-									$ingreidentTitle = $row['title'];
-									$ingreidentQuantity = $row['quantity'];
-									$measurement = $row['measurement'];
 
-									echo "<li>". $ingreidentTitle . "</li>";
+				<div class='IngredientsSection'>
+					<h3>Ingredients</h3>
+					<ul>
+						<?php
+							//Get all the ingredients and steps
+							$getIngreidentsSQL = "SELECT * FROM Ingredients WHERE recipeID = $recipeID;";
+							$getIngreidents = mysqli_query($conn, $getIngreidentsSQL);
+			
+							if($getIngreidents){
+								if($getIngreidents->num_rows > 0){
+									while($row = $getIngreidents->fetch_assoc()){
+										$ingreidentID = $row['id'];
+										$ingreidentTitle = $row['title'];
+										$ingreidentQuantity = $row['quantity'];
+										$measurement = $row['measurement'];
+
+										echo "<li>". $ingreidentQuantity . " " . $measurement . " " .  $ingreidentTitle . "</li>";
+									}
 								}
 							}
-						}
 
-					?>
-				<ul>
+						?>
+					<ul>
+				</div>
 
 				<!--Steps section-->
-				<h3>Steps</h3>
-				<ol>
-					<?php 
-						//get all the Steps
-						$getStepsSQL = "SELECT * FROM Steps WHERE recipeID = $recipeID;";
-						$getSteps = mysqli_query($conn, $getStepsSQL);
+				<div class="stepsContainer">
+					<h3>Steps</h3>
+					<ol>
+						<?php 
+							//get all the Steps
+							$getStepsSQL = "SELECT * FROM Steps WHERE recipeID = $recipeID;";
+							$getSteps = mysqli_query($conn, $getStepsSQL);
 
-						if($getSteps){
-							if($getSteps->num_rows > 0){
-								while($row = $getSteps->fetch_assoc()){
-									$stepID = $row['id'];
-									$stepDetails = $row['details'];
-									$count = $row['count'];
+							if($getSteps){
+								if($getSteps->num_rows > 0){
+									while($row = $getSteps->fetch_assoc()){
+										$stepID = $row['id'];
+										$stepDetails = $row['details'];
+										$count = $row['count'];
 
-									echo "<li>" . $stepDetails . "</li>";
+										echo "<li>" . $stepDetails . "</li>";
+									}
 								}
 							}
-						}
-					?>
+						?>
 		
-				</ol>
+					</ol>
+				</div>
+
+				<!--Notes section-->
+				<div class='notesSection'>
+					<h3>Notes </h3>
+					<?php echo "<p>" . $recipeNotes . "</p>"; ?>
+				</div>
+				
 			</div>
+			
+		
 		</div>
+
+		
 		
 	</body>
 
