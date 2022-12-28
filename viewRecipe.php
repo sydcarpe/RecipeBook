@@ -45,6 +45,7 @@ if($getRecipes){
 			$cookTime = $row['cookTime'];
 			$recipeReview = $row['review'];
 			$recipeNotes = $row['notes'];
+			$recipeImgLocation = $row['imgLocation'];
 		}
 	}
 }
@@ -59,9 +60,10 @@ if($getRecipes){
 
 	<body>
 
-		<h1> <?php echo $recipeTitle; ?> </h1>
-		<img src='' />
 		<?php 
+			echo "<h1>" . $recipeTitle . "</h1>";
+			echo "<img src='". $recipeImgLocation ."' />";
+		
 			echo "<p> servings: " . $servings . "</p>";
 			echo "<p> cook time: " . $cookTime . "</p>";
 			echo "<p> Your review: " . $recipeReview . "</p>";
