@@ -44,7 +44,7 @@ body {
 .recipeContainer{
     margin:0;
     margin-bottom: 1.0em;
-    max-width: 80.0em;
+    width: 80.0em;
     background-color:var(--orangie);
     display:flex;
     flex-direction:column;
@@ -63,6 +63,17 @@ body {
 
     .recipeContainer h3{
         align-self:flex-start;
+    }
+
+.editRecipeContainer{
+    display:flex;
+    justify-content:flex-end;
+}
+
+    .editRecipeContainer button{
+        padding: 1.0em;
+        margin: 0 2.0em;
+        font-size: 18px;
     }
 
 .recipeInfo {
@@ -145,3 +156,6 @@ body {
         font-size: 18px;
         margin-top: .5em;
     }
+
+
+/*edit Recipe page Section*/

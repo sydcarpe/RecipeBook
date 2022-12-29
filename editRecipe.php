@@ -66,6 +66,7 @@ if($getRecipeBookInfo){
 
 
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head> 
@@ -134,7 +135,6 @@ if($getRecipeBookInfo){
 										$ingreidentQuantity = $row['quantity'];
 										$measurement = $row['measurement'];
 
-										echo "<li>". $ingreidentQuantity . " " . $measurement . " " .  $ingreidentTitle . "</li>";
 									}
 								}
 							}
@@ -159,7 +159,6 @@ if($getRecipeBookInfo){
 										$stepDetails = $row['details'];
 										$count = $row['count'];
 
-										echo "<li>" . $stepDetails . "</li>";
 									}
 								}
 							}
