@@ -171,7 +171,6 @@ if($getRecipeBookInfo){
 						<?php echo "<p>" . $recipeNotes . "</p>"; ?>
 					</div>
 					<button type='submit'>Update</button>
-
 				</form>
 			</div>
 		</div>		
