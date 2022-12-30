@@ -50,6 +50,11 @@ if($getRecipeBookInfo){
 <html>
 	<head> 
 		<link rel="stylesheet" href="css/index.css" >
+
+		<!--Font stylesheets-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 	</head>
 
 	<body>
@@ -61,33 +66,42 @@ if($getRecipeBookInfo){
 			*when clicked take to createRecipeBook.php
 		-->
 		<h1> <?php echo $recipeBookTitle; ?> </h1>
+		<div class='recipeBookContainer'>
+			<div class='individualRecipe'>
+				<form action='viewRecipe.php' method='POST'>
+				<!--Displaying all the recipes that are in this recipe book and getting recipe information-->
+					<?php 
+						$getRecipesSQL = "SELECT * FROM Recipe WHERE bookID = $recipeBookID;";
+						$getRecipes = mysqli_query($conn, $getRecipesSQL);
 
-		<form action='viewRecipe.php' method='POST'>
-		<!--Displaying all the recipes that are in this recipe book and getting recipe information-->
-			<?php 
-				$getRecipesSQL = "SELECT * FROM Recipe WHERE bookID = $recipeBookID;";
-				$getRecipes = mysqli_query($conn, $getRecipesSQL);
-
-				if($getRecipes){
-					if($getRecipes->num_rows > 0){
-						while($row = $getRecipes->fetch_assoc()){
-							$recipeID = $row['id'];
-							$recipeTitle = $row['title'];
-							$recipeCreated = $row['dateCreated'];
-							$servings = $row['servings'];
-							$cookTime = $row['cookTime'];
-							$recipeReview = $row['review'];
-							$recipeNotes = $row['notes'];
+						if($getRecipes){
+							if($getRecipes->num_rows > 0){
+								while($row = $getRecipes->fetch_assoc()){
+									$recipeID = $row['id'];
+									$recipeTitle = $row['title'];
+									$recipeCreated = $row['dateCreated'];
+									$servings = $row['servings'];
+									$cookTime = $row['cookTime'];
+									$recipeReview = $row['review'];
+									$recipeNotes = $row['notes'];
+									$recipeImgLocation = $row['imgLocation'];
 
 						
-							echo "<input type='hidden' value='$recipeID' name='recipeID'/>"; //getting the recipeID number
-							echo "<button type='submit'>" . $recipeTitle . "</button>";
+									echo "<input type='hidden' value='$recipeID' name='recipeID'/>"; //getting the recipeID number
+									echo "<button type='submit'> <img src='". $recipeImgLocation ."' </button>";
+									echo "<h3>". $recipeTitle ."</h3>";
+								}
+							}
 						}
-					}
-				}
-			?>
-		</form>
+					?>
+				</form>
+			</div>
+		</div>
 		
+		<form action='createNewRecipe.php' method='POST'>
+			<input type='hidden' value='<?php echo $recipeBookID; ?>' name='recipeBookID'/>
+			<button type='submit' class='newRecipeBtn'>Create New Recipe</button>
+		</form>
 
 	</body>
 
