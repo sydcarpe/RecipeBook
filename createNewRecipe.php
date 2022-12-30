@@ -15,21 +15,9 @@ $result = mysqli_query($conn, $sql);
 if($conn->connect_errno){
 	echo "Error Connecting";
 }
-
-//Getting user information
-$getUserInfoSQL = "SELECT * FROM User WHERE id = $currUser;";
-$getUserInfo = mysqli_query($conn, $getUserInfoSQL);
-if($getUserInfo){
-	if($getUserInfo->num_rows > 0){
-		while($row = $getUserInfo->fetch_assoc()){
-			$fname = $row['fname'];
-			$lname = $row['lname'];
-		}
-	}
-}
-
 //getting recipeBookID information
 $recipeBookID = htmlspecialchars($_POST['recipeBookID']);
+
 
 //getting Recipe Book information from id
 $getRecipeBookInfoSQL = "SELECT * FROM RecipeBook
@@ -58,13 +46,20 @@ if($getRecipeBookInfo){
 
 	<body>
 		<form action='insertNewRecipe.php' method='POST'>
+			<input type='hidden' value='<?php echo $recipeBookID; ?>' name='recipeBookID'/>
 			<input type='text' name='recipeName' placeholder='Recipe Name' required/>* 
 			</br>
 			<input type='text' name='recipeServings' placeholder='Servings'/>
 			</br>
 			<!--Need to change this to be time lapsed-->
 			<input type='text' name='recipeCookTime' placeholder='Cook Time'/>
-
+			</br>
+			<input type='number' name='recipeReview' placeholder='Review out of 5' max="5"/>
+			</br>
+			<textarea name='recipeNotes'> </textarea>
+			</br>
+			<
+			<button type='submit'>Create Recipe</button>
 
 		</form>
 
