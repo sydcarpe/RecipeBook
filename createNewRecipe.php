@@ -58,7 +58,6 @@ if($getRecipeBookInfo){
 			</br>
 			<textarea name='recipeNotes'> </textarea>
 			</br>
-			<
 			<button type='submit'>Create Recipe</button>
 
 		</form>

@@ -16,6 +16,9 @@ if($conn->connect_errno){
 	echo "Error Connecting";
 }
 
+//getting todays date
+$currentDate = date('Y-m-d');
+
 //getting the inserting information from the users
 $recipeBookID = htmlspecialchars($_POST['recipeBookID']);
 $recipeName = htmlspecialchars($_POST['recipeName']);
@@ -38,5 +41,14 @@ if($recipeServings = ""|| trim($recipeServings) == ''){
 }
 */
 
-$insertRecipeSQL = "INSERT INTO Recipe"
+$insertRecipeSQL = "INSERT INTO Recipe(title, dateCreated, servings, cookTime, review, notes, userID, bookID)
+					VALUES ('$recipeName', '$currentDate', $recipeServings, '$recipeCookTime', $recipeReview, '$recipeNotes', $currUser, $recipeBookID);";
+
+$insertRecipe = mysqli_query($conn, $insertRecipeSQL);
+
+if($insertRecipe){
+	echo "SORRY FOR PARTY ROCKIN! It worked";
+} else {
+	echo "ERROR: " . $insertRecipe -> error;
+}
 ?>
