@@ -97,14 +97,13 @@ if($getRecipeBookInfo){
 			<div class='recipeContainer'>
 				<h1> <?php echo $recipeTitle; ?> </h1>
 
-				<!--
+				
 				<div class='editRecipeContainer'>
 					<form action='editRecipe.php' method='POST'>					
 						<button type='submit'>Edit Recipe</button>
 						<input type='hidden' value = '<?php echo $recipeID; ?>' name='recipeID'/>
 					</form>
 				</div>
-				-->
 
 				<!--Displaying top recipe Info, picture, title-->
 				<?php 
