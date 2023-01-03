@@ -68,7 +68,7 @@ if($getRecipeBookInfo){
 		<h1> <?php echo $recipeBookTitle; ?> </h1>
 		<div class='recipeBookContainer'>
 			<div class='individualRecipe'>
-				<form action='viewRecipe.php' method='POST'>
+				
 				<!--Displaying all the recipes that are in this recipe book and getting recipe information-->
 					<?php 
 						$getRecipesSQL = "SELECT * FROM Recipe WHERE bookID = $recipeBookID;";
@@ -86,15 +86,16 @@ if($getRecipeBookInfo){
 									$recipeNotes = $row['notes'];
 									$recipeImgLocation = $row['imgLocation'];
 
-						
-									echo "<input type='hidden' value='$recipeID' name='recipeID'/>"; //getting the recipeID number
-									echo "<button type='submit'> <img src='". $recipeImgLocation ."' </button>";
-									echo "<h3>". $recipeTitle ."</h3>";
+									echo "<form action='viewRecipe.php' method='POST'>";
+										echo "<input type='hidden' value='$recipeID' name='recipeID'/>"; //getting the recipeID number
+										echo "<button type='submit'> <img src='". $recipeImgLocation ."' /> </button>";
+										echo "<h3>". $recipeTitle ."</h3>";
+									echo "</form>";
 								}
 							}
 						}
 					?>
-				</form>
+				
 			</div>
 		</div>
 		

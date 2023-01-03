@@ -19,13 +19,13 @@ if($conn->connect_errno){
 
 //getting the inserting information from the users
 $recipeID = htmlspecialchars($_POST['recipeID']);
-echo $recipeID;
+
 $nextStep = htmlspecialchars($_POST['step']);
 
 //inserting the step into the next step
 //first have to get the amount of steps for the current recipe
 
-$getCurrStepsSQL = "SELECT COUNT(id) FROM Steps WHERE recipeID = 1;";
+$getCurrStepsSQL = "SELECT COUNT(id) FROM Steps WHERE recipeID = $recipeID;";
 $getCurrSteps = mysqli_query($conn, $getCurrStepsSQL);
 
 if($getCurrSteps){
@@ -36,7 +36,7 @@ if($getCurrSteps){
 	}
 }
 
-//echo $numOfSteps;
+echo $numOfSteps;
 
 
 ?>
