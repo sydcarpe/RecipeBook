@@ -165,7 +165,7 @@ if($getRecipeBookInfo){
 					<!--END OF STEPS. add steps after this-->
 					<form action='insertSteps.php' method='POST'>
 						<textarea name='step'></textarea>
-						<input type='hidden' name='recipeID' value='$recipeID'/>
+						<input type='hidden' name='recipeID' value=' <?php echo $recipeID; ?> '/>
 						<button type='submit'>Add Next Step</button>
 					</form>
 				</div>
