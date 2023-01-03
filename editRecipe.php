@@ -155,6 +155,7 @@ if($getRecipeBookInfo){
 										$stepID = $row['id'];
 										$stepDetails = $row['details'];
 										$count = $row['count'];
+										echo "<li>" . $stepDetails . "</li>";
 
 									}
 								}
